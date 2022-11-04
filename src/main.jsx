@@ -25,31 +25,27 @@ const router = createBrowserRouter(
         <Route
             path="/"
             element={<Root />}
-            errorElement={<ErrorPage />}
             loader={rootLoader}
             action={rootAction}
+            errorElement={<ErrorPage />}
         >
-            <Route errorElement={<ErrorPage />}>
+            <Route errorElement={<ErrorPage />} action={rootAction}>
                 <Route index element={<Index />} />
-
                 <Route
                     path="contacts/:contactId"
                     element={<Contact />}
                     loader={contactLoader}
                     action={contactAction}
                 />
-
                 <Route
                     path="contacts/:contactId/edit"
                     element={<EditContact />}
                     loader={contactLoader}
                     action={editAction}
                 />
-
                 <Route
                     path="contacts/:contactId/destroy"
                     action={destroyAction}
-                    errorElement={<div>Oops! There was an error!</div>}
                 />
             </Route>
         </Route>
